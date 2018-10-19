@@ -1,0 +1,64 @@
+{
+    "tasks": [
+        "fit", "opt"
+    ],
+    "output_dir": "../../master/G@RUNS.@MULT",
+    "write_summary": true,
+    "gpu": "gpu0",
+    "random_seed": 0, 
+    "optimization": {
+        "input_file": "../../master/C@RUNS.@MULT/fil_structs.xyz.0", 
+        "load_network": 0,
+        "opt_number": -1, 
+        "min_max_ext_ratio": 0.05
+    }, 
+    "filtering": {
+        "input_file": 0, // if only a number, it will be opt
+        "max_diff": 0.50, 
+        "max_diff_report": 1.00, 
+        "sort": true, 
+        "pre_sort": true
+    }, 
+    "fitting": {
+        "input_file": "../../master/@RUNS.@MULT/par_structs.xyz.0",
+        "degree": 4,
+        "energy_cut": "+0.20", // in hartree, relative to lowest one
+        "sample_number": [ 200000, 20000, 20000 ],
+        "sample_ratio": [ 9.0, 1.0, 1.0 ],
+        "exp_length": 4.0,
+        "min_max_ext_ratio": 0.05,
+        "scale_lengths": false,
+        "second_order": false,
+        "energy_unit": "hartree",
+        "shuffle_input": true,
+        "param_save": 1,
+        "diff": false,
+        "orig_and_diff": 0,
+        "pre_nets": []
+    },
+    "fitting_net": {
+        "load_network": -1,
+        "dump_network": true,
+        "shuffle_per": 1,
+        "layers": [
+            "tanh:  .. > . 40",
+            "tanh:  .. > . 70",
+            "tanh:  .. > . 60",
+            "softplus: .. > . 2",
+            "softplus: B. C. > 40 .",
+            "softplus:    .. > 10 .",
+            "reshape",
+            "average: 0"
+        ],
+        "step_decay": true,
+        "step_decay_factor": 60,
+        "step": 0.1,
+        "batch_size": 50,
+        "momentum": 0.7,
+        "nesterov": false,
+        "show_epoch": 1,
+        "epochs": 1400,
+        "auto": true,
+        "max_lambda": 0
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "tasks": [
+        "stat"
+    ],
+    "output_dir": "./master/1",
+    "random_seed": 0,
+    "stat": {
+        "input_file": "./CK/ck_structs.zip"
+    }
+}

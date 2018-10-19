@@ -1,0 +1,76 @@
+{
+    "relax": [
+        {
+            "program": "VASP 5.4.1",
+            "task_type": "relax",
+            "step": 100,
+            "max_step": 500,
+            "filter_type": "conv",
+            "read_restart": false,
+            "functional": "PBE",
+            "multiplicity": 0,
+            "charge": 0,
+            "max_config": -1,
+            "others": "scf(iter=150)", 
+            "sources": [ [ "create" ] ]
+        }
+    ], 
+    "neb": [
+        {
+            "program": "VASP 5.4.1",
+            "task_type": "neb",
+            "step": 50,
+            "max_step": 500,
+            "read_restart": false,
+            "functional": "PBE",
+            "multiplicity": 0,
+            "charge": 0,
+            "max_config": -1,
+            "others": "scf(iter=100);ibrion=3;potim=0;iopt=1;ediffg=-0.01;ediff=1E-5;spring=-5.0", 
+            "sources": [ [ "read", "?" ] ]
+        }
+    ], 
+    "energy": [
+        {
+            "program": "VASP 5.4.1",
+            "task_type": "energy",
+            "read_restart": false,
+            "functional": "PBE", 
+            "multiplicity": 0,
+            "charge": 0,
+            "max_config": -1,
+            "others": "scf(iter=1000)", 
+            "sources": [ [ "restart", "?" ] ]
+        }
+    ], 
+    "freq": [
+        {
+            "program": "VASP 5.4.1",
+            "task_type": "freq",
+            "freq_step": 0.00, 
+            "read_restart": false,
+            "functional": "PBE", 
+            "multiplicity": 0,
+            "charge": 0,
+            "max_config": -1,
+            "others": "scf(iter=1000)", 
+            "sources": [ [ "restart", "?" ] ]
+        }
+    ], 
+    "relax-tm": [
+        {
+            "program": "TURBOMOLE 6.6",
+            "task_type": "relax",
+            "step": 100,
+            "max_step": 500,
+            "filter_type": "conv",
+            "read_restart": false,
+            "functional": "tpssh",
+            "basis": "def2-TZVP",
+            "charge": 0,
+            "max_config": -1,
+            "others": "scf(iter=1000)", 
+            "sources": [ [ "create" ] ]
+        }
+    ]
+}

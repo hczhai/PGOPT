@@ -1,0 +1,44 @@
+{
+    "tasks": [
+        "global"
+    ],
+    "output_dir": "../../master/@RUNS.@MULT",
+    "random_seed": 0, 
+    "creation": {},
+    "parallel": {
+        "idle_time": 8.0,
+        "max_time": 750000,  // ~ 210 hours
+        "max_no_repsonce_time": 300.0,
+        "proc_dir": "../../procs",
+        "restart_dir": "../../restarts/@RUNS.@MULT",
+        "ref_dir": "../../master",
+        "proc_type": "para", 
+        "arguments": [ ], 
+        "secondary": "",
+        "rescue_bad": false, 
+        "continue_scf": false, 
+        "rescue_length": 0.02
+    },
+    "reaction-path": {
+        "nimages": 5, // not including start and end points
+        "max_diff": 1.5, 
+        "nisomers": 10
+    }, 
+    "filtering-create": {
+        "max_diff": 0.25,
+        "max_diff_report": 1.00, 
+        "align": true
+    }, 
+    "filtering-parallel": {
+        "max_diff": 0.10,
+        "max_diff_report": 0.15
+    }, 
+    "filtering-report": {
+        "max_diff": 0.25,
+        "max_diff_report": 1.00
+    }, 
+    "report": {
+        "energy_cutoff": [ 0.40 ],
+        "energy_cutoff_hard": 0.40
+    }
+}

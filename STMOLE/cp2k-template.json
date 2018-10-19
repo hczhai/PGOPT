@@ -1,0 +1,62 @@
+{
+    "GLOBAL": {
+        "PROJECT": "UNKNOWN", 
+        "PRINT_LEVEL": "LOW", 
+        "RUN_TYPE": "GEO_OPT"
+    },
+    "FORCE_EVAL": {
+        "METHOD": "QS",
+        "DFT": {
+            "SPIN_POLARIZED": "T", 
+            "MGRID": {
+                "CUTOFF": "[Ry] 800"
+            }, 
+            "QS": {
+                "METHOD": "GPW", 
+                "EPS_DEFAULT": 1E-10
+            }, 
+            "SCF": {
+                "SCF_GUESS": "ATOMIC", 
+                "EPS_SCF": 1E-6,
+                "MAX_SCF": 300, 
+                "DIAGONALIZATION": {
+                    "_": "ON", 
+                    "ALGORITHM": "STANDARD"
+                }, 
+                "MIXING": {
+                    "_": "T", 
+                    "METHOD": "BROYDEN_MIXING", 
+                    "ALPHA": 0.2,
+                    "BETA": 2.0, 
+                    "NBROYDEN": 12
+                }, 
+                "SMEAR": {
+                    "_": "ON",
+                    "METHOD": "FERMI_DIRAC",
+                    "ELECTRONIC_TEMPERATURE": "[K] 300"
+                }, 
+                "ADDED_MOS": 100
+            }, 
+            "XC": {
+                "XC_FUNCTIONAL": {
+                    "PBE": {}
+                }
+            }
+        }, 
+        "SUBSYS": {
+            "CELL": {}
+        }
+    }, 
+    "MOTION": {
+        "GEO_OPT": {
+            "OPTIMIZER": "CG", 
+            "MAX_ITER": 200, 
+            "MAX_DR": "[bohr] 0.01",
+            "MAX_FORCE": "0.001",
+            "RMS_DR": "[bohr] 0.0025"
+        }, 
+        "CONSTRAINT": {
+            "FIXED_ATOMS": {}
+        }
+    }
+}
