@@ -1,0 +1,15 @@
+{
+    "tasks": [
+        "filter"
+    ],
+    "output_dir": "./OUT-pt4b4-filter",
+    "random_seed": 0,
+    "filtering": {
+        "sort": true,
+        "input_file": "../data/pt4b4-local.xyz",
+        "align": true,
+        "pre_sort": true,
+        "max_diff_report": 1.0,
+        "max_diff": 0.25
+    }
+}

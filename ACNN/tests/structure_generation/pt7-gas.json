@@ -1,0 +1,18 @@
+{
+    "tasks": [
+        "create"
+    ],
+    "output_dir": "./OUT-pt7-gas",
+    "random_seed": 0,
+    "creation": {
+        "name": "Pt7",
+        "number": 50,
+        "method": "blda",
+        "order": 2,
+        "2d": 0.5
+    },
+    "filtering-create": {
+        "max_diff": 0.25,
+        "max_diff_report": 1.00
+    }
+}

@@ -53,7 +53,7 @@ def freq_str(freql, width):
     for i, f in enumerate(freqt):
         tstrb = tstr = rstr + ("" if i == 0 else ", ") + f
         if i != len(freql) - 1: tstr += ", ..."
-        w = stringWidth(tstr, fontName="Arial", fontSize=10)
+        w = stringWidth(tstr, fontName="Helvetica", fontSize=10)
         if w > width: break
         rstr = tstrb
         rrstr = tstr
@@ -108,7 +108,7 @@ class NumberedCanvas(canvas.Canvas):
         canvas.Canvas.save(self)
 
     def draw_page_number(self, page_count):
-        self.setFont("Arial", 11)
+        self.setFont("Helvetica", 11)
         self.drawRightString(letter[0] - 0.5 * inch, 0.5 * inch,
             "%d / %d" % (self._pageNumber, page_count))
 
@@ -164,9 +164,9 @@ class SimpleDraw(object):
                                          plot_charge=plot_charge, rotmat=rotmat)
         rt1 *= ratio
         story = []
-        pstyle = ParagraphStyle(name="body", fontName="Arial",
+        pstyle = ParagraphStyle(name="body", fontName="Helvetica",
             fontSize=11, leading=15, spaceAfter=10, textColor=colors["black"])
-        tstyle = ParagraphStyle(name="tit", fontName="Arial",
+        tstyle = ParagraphStyle(name="tit", fontName="Helvetica",
             fontSize=13, leading=15, spaceAfter=10, textColor=colors["black"])
         emin = self.finals[0].energy if len(self.finals) != 0 else 0.0
         if title != "":
@@ -208,28 +208,28 @@ class Report(object):
         self.doc = TOCDocTemplate(self.filename, pagesize=letter,
             leftMargin=0.5*inch, rightMargin=0.5*inch, topMargin=0.6*inch, bottomMargin=0.5*inch)
         self.stylesheet = StyleSheet1()
-        self.stylesheet.add(ParagraphStyle(name="title", fontName="Arial",
+        self.stylesheet.add(ParagraphStyle(name="title", fontName="Helvetica",
             fontSize=18, leading=22, spaceAfter=22, textColor=colors["blue"]))
         self.stylesheet.add(ParagraphStyle(name="heading1", parent=self.stylesheet["title"],
             fontSize=15, leading=18, spaceAfter=10, spaceBefore=18, textColor=colors["black"]))
         self.stylesheet.add(ParagraphStyle(name="heading2", parent=self.stylesheet["title"],
-            fontSize=12, leading=15, spaceAfter=10, spaceBefore=10, textColor="#343434", fontName="Arial"))
-        self.stylesheet.add(ParagraphStyle(name="body", fontName="Arial",
+            fontSize=12, leading=15, spaceAfter=10, spaceBefore=10, textColor="#343434", fontName="Helvetica"))
+        self.stylesheet.add(ParagraphStyle(name="body", fontName="Helvetica",
             fontSize=11, leading=15, spaceAfter=10, textColor=colors["black"]))
         self.stylesheet.add(ParagraphStyle(name="cellbody", parent=self.stylesheet["body"],
             fontSize=10))
         self.stylesheet.add(ParagraphStyle(name="cellcenter", parent=self.stylesheet["body"],
             fontSize=10, alignment=TA_CENTER))
         self.stylesheet.add(ParagraphStyle(name="celltitle", parent=self.stylesheet["cellbody"],
-            fontName="Arial", alignment=TA_CENTER))
+            fontName="Helvetica", alignment=TA_CENTER))
         self.stylesheet.add(ParagraphStyle(name="celltitleleft", parent=self.stylesheet["cellbody"],
-            fontName="Arial"))
+            fontName="Helvetica"))
         self.stylesheet.add(ParagraphStyle(name="indbody", parent=self.stylesheet["body"],
             leftIndent=15))
         self.tablestyles = {}
         self.tablestyles["main"] = TableStyle([
-            ('FONT',    (1, 0), (-1, -1), "Arial"),
-            ('FONT',    (0, 0), (0, -1), "Arial"),
+            ('FONT',    (1, 0), (-1, -1), "Helvetica"),
+            ('FONT',    (0, 0), (0, -1), "Helvetica"),
             ('ALIGN',    (0, 0), (0, -1), "RIGHT"),
             ('FONTSIZE',    (0, 0), (-1, -1), 10),
             ("BACKGROUND", (0, 0), (0, -1), "#F4F4F4"),
@@ -242,11 +242,11 @@ class Report(object):
         self.tablestyles["mainx"]._cmds += [
             ('ALIGN', (0, 0), (-1, -1), "CENTER"),
             ('LINEBELOW',    (0, 0), (-1, 0), 1, "#C5C5C5"),
-            ('FONT',    (0, 0), (-1, 0), "Arial"),
+            ('FONT',    (0, 0), (-1, 0), "Helvetica"),
         ]
         self.tablestyles["mainxx"] = copy.deepcopy(self.tablestyles["mainx"])
         self.tablestyles["mainxx"]._cmds += [
-            ('FONT',    (1, 0), (1, -1), "Arial"),
+            ('FONT',    (1, 0), (1, -1), "Helvetica"),
         ]
     
     @staticmethod
@@ -288,7 +288,7 @@ class Report(object):
         mener = finals[0].energy if len(finals) != 0 else 0.0
         efactor = 27.21139
         awid = letter[0] - 1.2 * inch
-        qwid = stringWidth("Freqs: ", fontName="Arial", fontSize=10)
+        qwid = stringWidth("Freqs: ", fontName="Helvetica", fontSize=10)
         fwid = awid * 2.0 / 3.0 - 12 - 5 - qwid
         # rots = [ [0.0, 1.0, 0.0, 0.0], "best", [90.0, -1.0, 0.0, 0.0] ]
         rots = [ [0.0, 1.0, 0.0, 0.0], [90.0, -1.0, 0.0, 0.0] ]
@@ -302,26 +302,26 @@ class Report(object):
         style = copy.deepcopy(self.tablestyles["main"])
         for i in range(len(cdr)):
             c = finals[i]
-            pyname = "<a name=\"X%s\" />[<font face=\"Arial\">%d</font>] "    % (c.aname, i + 1)
+            pyname = "<a name=\"X%s\" />[<font face=\"Helvetica\">%d</font>] "    % (c.aname, i + 1)
             if c.similar is not None:
                 pyname += " ~ [<a href=\"#X%s\" >%d</a>] (d = %.2f) " % (finals[c.similar[0]].aname, 
                     c.similar[0] + 1, c.similar[1])
             c.details = [
-                [ Paragraph(pyname + "<font face=\"Arial\">#%s</font> %s (<font color=\"%s\">%s</font>)" % 
+                [ Paragraph(pyname + "<font face=\"Helvetica\">#%s</font> %s (<font color=\"%s\">%s</font>)" % 
                     (c.tname, mini_name(c.minimum_type), multi_color(c.multiplicity), 
                     multi_name(c.multiplicity)), self.stylesheet['cellbody']), 
-                    Paragraph("""<font face=\"Arial\">E</font> = %s (%.3f eV)""" % 
+                    Paragraph("""<font face=\"Helvetica\">E</font> = %s (%.3f eV)""" % 
                     (("%.5f" if c.energy <= -1000 else "%.6f") % c.energy, 
                     httoev * (c.energy - mener)), self.stylesheet['cellbody']), 
-                    Paragraph("""<font face=\"Arial\">[Relax] Time: </font> %s 
-                    <font face=\"Arial\">Step: </font> %d""" % (time_span_short(c.props["time"]), 
+                    Paragraph("""<font face=\"Helvetica\">[Relax] Time: </font> %s 
+                    <font face=\"Helvetica\">Step: </font> %d""" % (time_span_short(c.props["time"]), 
                     int(c.props["step"])), self.stylesheet['cellbody']) ], 
                 ]
             if "freqs" in c.props:
                 c.detailsx = [
-                    [ Paragraph("""<font face=\"Arial\">Freqs: </font> %s""" % 
+                    [ Paragraph("""<font face=\"Helvetica\">Freqs: </font> %s""" % 
                         freq_str(c.props["freqs"], fwid), self.stylesheet['cellbody']), "", 
-                        Paragraph("""<font face=\"Arial\">[Freq] Time: </font> %s""" % 
+                        Paragraph("""<font face=\"Helvetica\">[Freq] Time: </font> %s""" % 
                         time_span_short(c.props["time.freqs"]), self.stylesheet['cellbody']) ], 
                     [ cdr[i], "", "" ] ]
             else:
@@ -335,7 +335,7 @@ class Report(object):
             if "freqs" in c.props:
                 style._cmds += [ ('SPAN',    (0, len_ed - 2), (1, len_ed - 2)) ]
         style._cmds += [
-            ('FONT',    (0, 0), (-1, -1), "Arial"), 
+            ('FONT',    (0, 0), (-1, -1), "Helvetica"), 
             ('FONTSIZE',    (0, 0), (-1, -1), 10), 
             ("BACKGROUND", (0, 0), (0, -1), "#FFFFFF"), 
             ('ALIGN',    (0, 0), (0, -1), "CENTER"), 
@@ -351,7 +351,7 @@ class Report(object):
         efactor = 27.21139
         rwid = (letter[0] / 2 - 0.6 * inch) * 0.52
         mwid = (letter[0] / 2 - 0.6 * inch) * 0.48
-        qwid = stringWidth("Freqs: ", fontName="Arial", fontSize=10)
+        qwid = stringWidth("Freqs: ", fontName="Helvetica", fontSize=10)
         fwid = rwid - 12 - 5 - qwid
         rots = [ [90.0, 1.0, 0.0, 0.0], [90.0, 0.0, 1.0, 0.0], [45.0, 1.0, 1.0, 0.0] ]
         rotns = [ "TOP", "LEFT", "TILTED" ]
@@ -366,35 +366,35 @@ class Report(object):
         data = []
         for i in range(len(cdx)):
             c = finals[i]
-            pyname = "<a name=\"X%s\" />[<font face=\"Arial\">%d</font>]"    % (c.aname, i + 1)
+            pyname = "<a name=\"X%s\" />[<font face=\"Helvetica\">%d</font>]"    % (c.aname, i + 1)
             if c.similar is not None:
                 pyname += " ~ [<a href=\"#X%s\" >%d</a>] (d = %.2f)" % (finals[c.similar[0]].aname, 
                     c.similar[0] + 1, c.similar[1])
             cpt = c.pointgroup()
-            ptp = Paragraph("<font face=\"ArialItalic\">%s<sub rise=2 size=8>%s</sub></font>" 
+            ptp = Paragraph("<font face=\"HelveticaItalic\">%s<sub rise=2 size=8>%s</sub></font>" 
                 % (cpt[0], cpt[1:]), self.stylesheet['cellbody'])
             c.details = [
                 [ Paragraph(pyname, self.stylesheet['cellbody']), 
-                    Paragraph("<font face=\"Arial\">#%s</font> %s (<font color=\"%s\">%s</font>)" % 
+                    Paragraph("<font face=\"Helvetica\">#%s</font> %s (<font color=\"%s\">%s</font>)" % 
                     (c.tname, mini_name(c.minimum_type), multi_color(c.multiplicity), 
                     multi_name(c.multiplicity)), self.stylesheet['cellbody']), ptp], 
-                [cdx[i], Paragraph("""<font face=\"Arial\">E</font> = %s (%.3f eV)""" % 
+                [cdx[i], Paragraph("""<font face=\"Helvetica\">E</font> = %s (%.3f eV)""" % 
                     (("%.5f" if c.energy <= -1000 else "%.6f") % c.energy, 
                     httoev * (c.energy - mener)), self.stylesheet['cellbody']), ""], 
-                ["", Paragraph("""<font face=\"Arial\">[Relax] Time: </font> %s 
-                    <font face=\"Arial\">Step: </font> %d""" % (time_span_short(c.props["time"]), 
+                ["", Paragraph("""<font face=\"Helvetica\">[Relax] Time: </font> %s 
+                    <font face=\"Helvetica\">Step: </font> %d""" % (time_span_short(c.props["time"]), 
                     int(c.props["step"])), self.stylesheet['cellbody']), ""] ]
             if "vip.energy" in c.props:
                 c.details += [
-                    [cdx[i], Paragraph("""<font face=\"Arial\">E<sub rise=2 size=8>vip</sub></font> = %s (%.3f eV)""" % 
+                    [cdx[i], Paragraph("""<font face=\"Helvetica\">E<sub rise=2 size=8>vip</sub></font> = %s (%.3f eV)""" % 
                         (("%.5f" if c.props["vip.energy"] <= -1000 else "%.6f") % c.props["vip.energy"], 
                         httoev * c.props["vip.energy"]), self.stylesheet['cellbody']), ""], 
                 ]
             if "freqs" in c.props:
                 c.detailsx = [
-                ["", Paragraph("""<font face=\"Arial\">Freqs: </font> %s""" % 
+                ["", Paragraph("""<font face=\"Helvetica\">Freqs: </font> %s""" % 
                     freq_str(c.props["freqs"], fwid), self.stylesheet['cellbody']), "" ], 
-                ["", Paragraph("""<font face=\"Arial\">[Freq] Time: </font> %s""" % 
+                ["", Paragraph("""<font face=\"Helvetica\">[Freq] Time: </font> %s""" % 
                     time_span_short(c.props["time.freqs"]), self.stylesheet['cellbody']), "" ], ["", cdr[i], ""] ]
             else:
                 c.detailsx = [ ["", "", ""], ["", "", ""], ["", cdr[i], ""] ]
@@ -431,7 +431,7 @@ class Report(object):
                     ('SPAN',    (1, ix), (2, ix)), ('SPAN',    (4, ix), (5, ix)), 
                 ]
         style._cmds += [
-            ('FONT',    (0, 0), (-1, -1), "Arial"), 
+            ('FONT',    (0, 0), (-1, -1), "Helvetica"), 
             ('FONTSIZE',    (0, 0), (-1, -1), 10), 
             ("BACKGROUND", (0, 0), (0, -1), "#FFFFFF"), 
             ('ALIGN',    (0, 0), (0, -1), "CENTER"), 
@@ -464,11 +464,11 @@ class Report(object):
             if not p.isdirect:
                 imx += " (int)"
             imx += " H = %.3f / %.3f eV" % tuple(httoev * p.barriers)
-            data += [[Paragraph("""[<font face=\"Arial\">%d</font>] <font face=\"Arial\">
+            data += [[Paragraph("""[<font face=\"Helvetica\">%d</font>] <font face=\"Helvetica\">
                                 #%d</font>%s""" % (i, tid, imx), self.stylesheet['cellbody']),
                       "From %d to %d [d = %.2f]" % (p.from_to[0], p.from_to[1], p.diffs[0]),
-                      Paragraph("""<font face=\"Arial\">[Path] Time: </font> %s
-                                <font face=\"Arial\">Step: </font> %d""" %
+                      Paragraph("""<font face=\"Helvetica\">[Path] Time: </font> %s
+                                <font face=\"Helvetica\">Step: </font> %d""" %
                                 (time_span_short(p.props["time"]), int(p.props["step"])),
                                 self.stylesheet['cellbody'])]]
             data += [[PGPlot.path_plot(p.energies, p.structs, p.diffs, surface_depth,
@@ -479,7 +479,7 @@ class Report(object):
             	('LINEBELOW', (0, len_ed - 1), (-1, len_ed - 1), 1, "#A5A5A5")
             ]
         style._cmds += [
-            ("FONT",       (0, 0), (-1, -1), "Arial"),
+            ("FONT",       (0, 0), (-1, -1), "Helvetica"),
             ("FONTSIZE",   (0, 0), (-1, -1), 10),
             ("BACKGROUND", (0, 0), ( 0, -1), "#FFFFFF"),
             ("ALIGN",      (0, 0), ( 0, -1), "CENTER"),
@@ -498,7 +498,7 @@ class Report(object):
         from meta.ana_utils.plot_rpath import to_letters
         for i, (xi, p) in enumerate(sorted(mins.items(), key=lambda x: int(x[0]))):
             tid = int(xi)
-            dataog += [[Paragraph("""[<font face=\"Arial\">%s</font>] E = %.3f eV"""
+            dataog += [[Paragraph("""[<font face=\"Helvetica\">%s</font>] E = %.3f eV"""
                       % (to_letters(tid), (p.energy - emin) * httoev), self.stylesheet['cellbody'])]]
             dataog += [[DrawCluster(p, simple=True, surface_depth=surface_depth,
                         clip=True, ratio=rto)]]
@@ -513,7 +513,7 @@ class Report(object):
             	('LINEBELOW', (0, len_ed - 1), (-1, len_ed - 1), 1, "#A5A5A5")
             ]
         style._cmds += [
-            ("FONT",       (0, 0), (-1, -1), "Arial"),
+            ("FONT",       (0, 0), (-1, -1), "Helvetica"),
             ("FONTSIZE",   (0, 0), (-1, -1), 10),
             ("BACKGROUND", (0, 0), ( 0, -1), "#FFFFFF"),
             ("ALIGN",      (0, 0), ( 0, -1), "CENTER"),
@@ -630,18 +630,18 @@ class Report(object):
                     propsum.append(sum(propx))
                 for ic, c in enumerate(g.finals[:max_prop_count]):
                     if ic < len(g.finalsx):
-                        pyname = "<a href=\"#X%s\" >[<font face=\"Arial\">%d</font>]</a>"    % (c.aname, ic + 1)
+                        pyname = "<a href=\"#X%s\" >[<font face=\"Helvetica\">%d</font>]</a>"    % (c.aname, ic + 1)
                     else:
-                        pyname = "[<font face=\"Arial\">%d</font>]"    % (ic + 1)
-                    pyname += " <font face=\"Arial\">#%s</font> %s"    % (c.tname, mini_name(c.minimum_type)[0]
+                        pyname = "[<font face=\"Helvetica\">%d</font>]"    % (ic + 1)
+                    pyname += " <font face=\"Helvetica\">#%s</font> %s"    % (c.tname, mini_name(c.minimum_type)[0]
                         if mini_name(c.minimum_type) != "UNK" else "")
                     if c.props["nrep"] != 1:
-                        pyname += " <font color=\"#AAAAAA\" face=\"ArialItalic\">* %d</font>" % c.props["nrep"]
+                        pyname += " <font color=\"#AAAAAA\" face=\"HelveticaItalic\">* %d</font>" % c.props["nrep"]
                     muname = "<font color=\"%s\">%s</font>" % (multi_color(c.multiplicity), multi_name(c.multiplicity))
                     if not is_surf:
                         cpt = c.pointgroup()
                         if cpt != "C1":
-                            muname += " &middot; <font face=\"ArialItalic\">%s<sub rise=2 size=8>%s</sub></font>" \
+                            muname += " &middot; <font face=\"HelveticaItalic\">%s<sub rise=2 size=8>%s</sub></font>" \
                                 % (cpt[0], cpt[1:])
                     if not vib:
                         ee = httoev * (c.energy - mener)
@@ -657,9 +657,9 @@ class Report(object):
                     ets.append(etsf)
                 tnrep = sum([c.props["nrep"] for c in g.finals[:max_prop_count]])
                 ttnrep = sum([c.props["nrep"] for c in g.finals])
-                etsf = [ "<font face=\"Arial\">total</font> (%d of %d)" % 
+                etsf = [ "<font face=\"Helvetica\">total</font> (%d of %d)" % 
                     (len(g.finals[:max_prop_count]), len(g.finals)), 
-                    "<font size=\"8\" color=\"#AAAAAA\" face=\"ArialItalic\">(* %d of %d)</font>"
+                    "<font size=\"8\" color=\"#AAAAAA\" face=\"HelveticaItalic\">(* %d of %d)</font>"
                     % (tnrep, ttnrep), "" ]
                 for itt, t in enumerate([ 100, 200, 300, 500, 700, 1000 ]):
                     etsf.append("%.5f" % (sum(props[itt][:max_prop_count]) / propsum[itt]))
@@ -762,15 +762,15 @@ class Report(object):
         story.append(title)
         story.append(Paragraph("""This is a computer automatically generated document. <br/> 
             Copyright &copy; %s Parallel Global Optimization Toolkit<br/>
-            <font face="Arial">Program Author:</font> Huanchen Zhai (Alexandrova Research Group, UCLA)<br/>
-            <font face="Arial">Date:</font> %s""" % (time.strftime("%Y"), 
+            <font face="Helvetica">Program Author:</font> Huanchen Zhai (Alexandrova Research Group, UCLA)<br/>
+            <font face="Helvetica">Date:</font> %s""" % (time.strftime("%Y"), 
             time.strftime("%b %d, %Y %H:%M:%S")), self.stylesheet['body']))
         
         story.append(self.heading('Contents', key="contents", level=1))
         toc = TableOfContents()
-        toc.levelStyles = [ ParagraphStyle(fontName='Arial', fontSize=12, name='TOCHeading1', 
+        toc.levelStyles = [ ParagraphStyle(fontName='Helvetica', fontSize=12, name='TOCHeading1', 
             leftIndent=40, firstLineIndent=-20, spaceBefore=0, leading=12),
-            ParagraphStyle(fontName='Arial', fontSize=10, name='TOCHeading2',
+            ParagraphStyle(fontName='Helvetica', fontSize=10, name='TOCHeading2',
                 leftIndent=60, firstLineIndent=-20, spaceBefore=0, leading=10),
         ]
         story.append(toc)
@@ -802,25 +802,25 @@ class Report(object):
                     gname = "%s.%s" % (dx.name, g.name)
                     sub_story.append(self.heading(ifxx + g.description, cont="%sGroup %s" % (ifxx, gname), 
                         key="summary-gp%s-%s" % (ifx, gname), level=2))
-                    es_text = "<font face=\"Arial\">Multiplicity color: </font>"
+                    es_text = "<font face=\"Helvetica\">Multiplicity color: </font>"
                     mults = sorted(list(set([d.multiplicity for d in gfx])))
                     ex_texx = [ "<font color=\"%s\">%s</font>" % (multi_color(m), multi_name(m)) for m in mults ]
                     es_text += ', '.join(ex_texx)
                     if len(gfx) != 0:
                         from cluster.coval import AtomicWeight, AtomicColor
-                        es_text += ".&nbsp;&nbsp;<font face=\"Arial\">Element color: </font>"
+                        es_text += ".&nbsp;&nbsp;<font face=\"Helvetica\">Element color: </font>"
                         xelemcs = list(gfx[0].elems)
                         if hasattr(gfx[0], "surf"): xelemcs += list(gfx[0].surf.elems)
                         elemcs = sorted(list(set([d for d in xelemcs])), key=lambda x:AtomicWeight.x[x])
                         ex_texx = [ "<font color=\"%s\">%s</font>" % (AtomicColor.x[x], x) for x in elemcs ]
                         es_text += ', '.join(ex_texx)
                     if gfx[0].aname is not None:
-                        es_text += (".<br/>All energies are relative to <a href=\"X%s\" fontName=\"Arial\"> " + 
+                        es_text += (".<br/>All energies are relative to <a href=\"X%s\" fontName=\"Helvetica\"> " + 
                             "the putative global minimum: %.6f [1] (#%s), <font color=\"%s\">%s</font></a>.") % \
                             (gfx[0].aname, gfx[0].energy, gfx[0].tname, 
                             multi_color(gfx[0].multiplicity),    multi_name(gfx[0].multiplicity))
                     else:
-                        es_text += (".<br/>All energies are relative to <font face=\"Arial\"> " + 
+                        es_text += (".<br/>All energies are relative to <font face=\"Helvetica\"> " + 
                             "the putative global minimum: %.6f [1], <font color=\"%s\">%s</font></font>.") % \
                             (gfx[0].energy, multi_color(gfx[0].multiplicity),    multi_name(gfx[0].multiplicity))
                     sub_story.append(Paragraph(es_text, self.stylesheet['indbody']))
@@ -828,7 +828,7 @@ class Report(object):
                         ener = DrawEnergetics(clus=gfx, cutoff=i, ratio=rto, no_freq=self.no_freq, 
                             surface_depth=surface_depth)
                         sub_story.append(Paragraph(
-                            "%s<font face=\"Arial\">Range:</font> 0.00 ~ %.2f eV (%d structures)" % 
+                            "%s<font face=\"Helvetica\">Range:</font> 0.00 ~ %.2f eV (%d structures)" % 
                             (("<br/>" if ii != 0 else ""), i, len(ener.clus)), self.stylesheet['indbody']))
                         sub_story.append(self.simple_wrap(ener))
             story.append(KeepTogether(sub_story))
@@ -873,7 +873,7 @@ class Report(object):
             style._cmds += [ ('LINEBELOW',    (0, edx - 1), (-1, edx - 1), 1, "#A5A5A5") ]
         style._cmds += [
             ('ALIGN', (1, 0), (2, -1), "RIGHT"), 
-            ('FONT',    (1, 0), (2, -1), "Arial"), 
+            ('FONT',    (1, 0), (2, -1), "Helvetica"), 
         ]
         story.append(self.draw_simple_table(global_info_data, span=[0, 1], style=style))
         story = story[:-2] + [ KeepTogether(story[-2:]) ]
@@ -901,7 +901,7 @@ class Report(object):
         for d in self.d.d:
             for r in d.runs:
                 opts_texts += [
-                    """<font face="Arial">%s-%s (%s): </font> %s""" % (
+                    """<font face="Helvetica">%s-%s (%s): </font> %s""" % (
                         "%s.%s" % (d.name, r.parent.parent.name), r.pname, 
                         r.task_type + ("*" if r.focus == r else ""), r.param["others"])
                 ]
@@ -929,7 +929,7 @@ class Report(object):
         style = copy.deepcopy(self.tablestyles["main"])
         style._cmds += [
             ('ALIGN', (1, 0), (1, -1), "RIGHT"), 
-            ('FONT',    (1, 0), (1, -1), "Arial"), 
+            ('FONT',    (1, 0), (1, -1), "Helvetica"), 
         ]
         for n, d in zip(cre_names, cre_data):
             x = Paragraph("<br/>".join(n), self.stylesheet['celltitle'])
@@ -949,11 +949,11 @@ class Report(object):
                     mu, sig = d["dist"]["mu"][k], d["dist"]["sigma"][k]
                     sta = "statistics"
                     if len(mu) == 2:
-                        creation_params += [[x, sta, k, Paragraph("""<font face="Arial" color="#5577AA">[1]</font> 
-                            %.3f Â± %.3f&nbsp;&nbsp;<font face="Arial" color="#5577AA">[2]</font>
+                        creation_params += [[x, sta, k, Paragraph("""<font face="Helvetica" color="#5577AA">[1]</font> 
+                            %.3f Â± %.3f&nbsp;&nbsp;<font face="Helvetica" color="#5577AA">[2]</font>
                             %.3f Â± %.3f""" % (mu[0], sig[0], mu[1], sig[1]), self.stylesheet['cellbody'])]]
                     elif len(mu) == 1:
-                        creation_params += [[x, sta, k, Paragraph("""<font face="Arial" color="#5577AA">[1]</font> 
+                        creation_params += [[x, sta, k, Paragraph("""<font face="Helvetica" color="#5577AA">[1]</font> 
                             %.3f Â± %.3f""" % (mu[0], sig[0]), self.stylesheet['cellbody'])]]
             elif d["method"] == "ck":
                 st_stat = len(creation_params)
@@ -987,7 +987,7 @@ class Report(object):
         style._cmds += [
             ('ALIGN', (0, 0), (-1, -1), "CENTER"), 
             ('LINEBELOW',    (0, 1), (-1, 1), 1, "#C5C5C5"), 
-            ('FONT',    (0, 0), (-1, 1), "Arial"), 
+            ('FONT',    (0, 0), (-1, 1), "Helvetica"), 
             ('SPAN',    (1, 0), (2, 0) ), ('SPAN',    (3, 0), (4, 0) ), ('SPAN',    (5, 0), (6, 0) ), 
             ('SPAN',    (0, 0), (0, 1) ), 
         ]
@@ -1195,10 +1195,10 @@ class Report(object):
 
         # Configuration Convergence
         sub_title = self.heading('Configuration Convergence', key="convergence", level=1)
-        sub_note = Paragraph("""<font face="Arial">Thick lines:</font> 
+        sub_note = Paragraph("""<font face="Helvetica">Thick lines:</font> 
              converged structures with energy up to %.2f eV 
             with respect to global minimum of each multiplicity. <br/>
-            <font face="Arial">Thin lines:</font> all converged structrues. """ 
+            <font face="Helvetica">Thin lines:</font> all converged structrues. """ 
             % self.d.conv_cut, self.stylesheet['body'])
         sub_title = KeepTogether([sub_title, sub_note])
         idx = 0
@@ -1291,7 +1291,7 @@ class Report(object):
         # Details
         sub_title = self.heading('Details', key="details", level=1)
         if self.energy_cutoff_hard is not None and self.energy_cutoff_hard > 0.0:
-            sub_note = Paragraph("""<font face="Arial">Note: </font> 
+            sub_note = Paragraph("""<font face="Helvetica">Note: </font> 
                 Only structures with energy up to %.2f eV 
                 with respect to global minimum are listed.""" % self.energy_cutoff_hard, 
                 self.stylesheet['body'])

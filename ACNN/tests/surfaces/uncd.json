@@ -1,0 +1,14 @@
+{
+    "fix": "0-95", 
+    "citation": "UNCD Diamond", 
+    "unit_cell": [
+        3.5667901038999998, 
+        3.5667901038999998, 
+        20.0
+    ], 
+    "space_group": "F -4 2 3", 
+    "space_group_ref": [
+        0.0, 
+        0.0
+    ]
+}

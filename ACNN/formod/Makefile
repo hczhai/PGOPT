@@ -4,7 +4,7 @@ HOME := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 CC = gcc
 FPC = f2py
-FPCFLAGS = --fcompiler=intelem --f77exec=ifort --f90exec=ifort -lmkl_core -lmkl_intel_lp64 -lmkl_sequential
+FPCFLAGS = --fcompiler=gfortran
 
 SRCDIR   := $(HOME)
 SRCFILES = $(shell find $(SRCDIR) -name "*.f90")
@@ -22,11 +22,4 @@ clean:
 	rm -rf $(HOME)/intel
 
 %.so: %.f90
-ifeq ($(OST),Darwin)
 	$(FPC) -c -m $(basename $(notdir $<)) $< $(FPCFLAGS)
-	install_name_tool -change libmkl_core.dylib $(MKLROOT)/lib/libmkl_core.dylib $@
-	install_name_tool -change libmkl_intel_lp64.dylib $(MKLROOT)/lib/libmkl_intel_lp64.dylib $@
-	install_name_tool -change libmkl_sequential.dylib $(MKLROOT)/lib/libmkl_sequential.dylib $@
-else
-	$(FPC) -c -m $(basename $(notdir $<)) $< $(FPCFLAGS)
-endif

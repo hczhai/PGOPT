@@ -1,0 +1,12 @@
+{
+    "tasks": [
+        "draw"
+    ],
+    "output_dir": "./OUT-pt7-gas",
+    "random_seed": 0,
+    "report": {
+        "input_file": "./OUT-pt7-gas/fil_structs.xyz.0",
+        "number": 9999,
+        "ratio": 1.6
+    }
+}

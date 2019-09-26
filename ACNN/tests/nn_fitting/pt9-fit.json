@@ -1,0 +1,59 @@
+{
+    "tasks": [
+        "fit"
+    ], 
+    "output_dir": "./OUT-pt9-nn",
+    "write_summary": true, 
+    "random_seed": 0,
+    "gpu": "gpu0",
+    "fitting_net": {
+        "shuffle_per": 1, 
+        "layers": [
+            "tanh:  .. > . 40", 
+            "tanh:  .. > . 70", 
+            "tanh:  .. > . 60", 
+            "softplus: .. > . 2", 
+            "softplus: B. C. > 40 .", 
+            "softplus:    .. > 10 .", 
+            "reshape", 
+            "average: 0"
+        ], 
+        "max_lambda": 0, 
+        "nesterov": false, 
+        "auto": true, 
+        "show_epoch": 1, 
+        "dump_network": true, 
+        "step_decay_factor": 60, 
+        "load_network": -1, 
+        "epochs": 1400, 
+        "step": 0.1, 
+        "batch_size": 50, 
+        "momentum": 0.7, 
+        "step_decay": true
+    }, 
+    "fitting": {
+        "min_max_ext_ratio": 0.05, 
+        "degree": 4, 
+        "param_save": 1, 
+        "second_order": false, 
+        "input_file": "../data/pt9-structs.xyz", 
+        "sample_number": [
+            10000, 
+            1000, 
+            1000
+        ], 
+        "energy_unit": "hartree", 
+        "orig_and_diff": 0, 
+        "exp_length": 4.0, 
+        "energy_cut": "+0.20", 
+        "scale_lengths": false, 
+        "sample_ratio": [
+            9.0, 
+            1.0, 
+            1.0
+        ], 
+        "diff": false, 
+        "pre_nets": [], 
+        "shuffle_input": true
+    }
+}

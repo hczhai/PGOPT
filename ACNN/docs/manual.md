@@ -22,6 +22,11 @@ pip install --upgrade dill
 echo 'import theano;print "ok"' | python
 ```
 
+4. Install `PGOPT` (The directory name `PGOPT-PROGRAMS` can be arbitrary).
+```bash
+cd ~
+git clone https://github.com/hczhai/PGOPT.git PGOPT-PROGRAMS
+
 5. Install `VASP` (optional). Add the following to `~/bashrc`.
 ```bash
 export VASPHOME=???/vasp.5.4.1/bin
@@ -35,8 +40,7 @@ export TURBOMOLE_HOME=???/TURBOMOLE
 
 6. Add the following to `~/bashrc`.
 ```bash
-module load intel/16.0.2
-BASE=~/program
+BASE=~/PGOPT-PROGRAMS
 export STMOLE_HOME=$BASE/STMOLE
 export ACNNHOME=$BASE/ACNN
 export PGOPTHOME=$BASE/PGOPT
@@ -50,7 +54,7 @@ export TMP_HOST=...
 export PROJECT_NAME=...
 ```
 
-8. Compile Fortran modules for `ACNN`.
+8. Compile Fortran modules for `ACNN`. You need a fortran compiler (`ifort` or `gfortran` for this).
 ```bash
 module load intel/16.0.2
 cd $ACNNHOME/formod

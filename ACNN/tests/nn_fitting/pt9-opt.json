@@ -1,0 +1,40 @@
+{
+    "tasks": [
+        "opt"
+    ], 
+    "output_dir": "./OUT-pt9-nn",
+    "write_summary": true, 
+    "random_seed": 0,
+    "gpu": "gpu0",
+    "optimization": {
+        "input_file": "./OUT-pt9-gas/fil_structs.xyz.0", 
+        "load_network": "./OUT-pt9-nn/fit_network.dill.0", 
+        "min_max_ext_ratio": 0.05, 
+        "opt_number": -1
+    }, 
+    "fitting_net": {
+        "shuffle_per": 1, 
+        "layers": [
+            "tanh:  .. > . 40", 
+            "tanh:  .. > . 70", 
+            "tanh:  .. > . 60", 
+            "softplus: .. > . 2", 
+            "softplus: B. C. > 40 .", 
+            "softplus:    .. > 10 .", 
+            "reshape", 
+            "average: 0"
+        ], 
+        "max_lambda": 0, 
+        "nesterov": false, 
+        "auto": true, 
+        "show_epoch": 1, 
+        "dump_network": true, 
+        "step_decay_factor": 60, 
+        "load_network": -1, 
+        "epochs": 1400, 
+        "step": 0.1, 
+        "batch_size": 50, 
+        "momentum": 0.7, 
+        "step_decay": true
+    }
+}

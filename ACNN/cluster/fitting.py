@@ -4,7 +4,7 @@ import random, itertools, copy
 from cluster.base import read_zip_clusters
 from acnn.trans_layers import trans_layers, LayerList
 from acnn.learn import MomentumNet
-from acnn.learn_adv import LevenbergMarquardtNet, QuasiNewtonNet, LBFGSNet
+from acnn.learn_adv import LevenbergMarquardtNet, LBFGSNet
 from acnn.layers import CoLayerSize as C, ParameterLayer, Reshape, AxisPoolLayer, Diff
 from utils.base import cast_float
 from utils.base import reproducible, print_dict
@@ -160,8 +160,6 @@ class NetEvaluator(object):
         self.net = MomentumNet(layers=layers, **cc_opts)
       elif m == "levenberg":
         self.net = LevenbergMarquardtNet(layers=layers, **cc_opts)
-      elif m == "quasi_newton":
-        self.net = QuasiNewtonNet(layers=layers, **cc_opts)
       elif m == "lbfgs":
         self.net = LBFGSNet(layers=layers, **cc_opts)
     if net_keep.params is not None:

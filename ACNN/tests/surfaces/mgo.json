@@ -1,0 +1,14 @@
+{
+    "fix": "0-71",
+    "citation": "MgO surface", 
+    "unit_cell": [
+        4.257,
+        4.257,
+        4.257
+    ],
+    "space_group": "-F 4 2 3",
+    "space_group_ref": [
+        0.0,
+        0.0
+    ]
+}
