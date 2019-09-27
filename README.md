@@ -1,4 +1,4 @@
-## PGOPT
+# PGOPT
 
 Parallel global optimization of gas phase and surface systems.
 
@@ -10,7 +10,7 @@ Zhai, Huanchen, and Anastassia N. Alexandrova. "Local Fluxionality of Surface-De
 
 ## Basic User Guide
 
-# Installation
+### Installation
 
 This code contains three sub-packages. `ACNN` contains all core algorithms. `PGOPT` includes settings for supercomputer environment. `STMOLE` defines the interface to `VASP` and `TURBOMOLE`.
 
@@ -62,7 +62,7 @@ Then apply the these environment changes:
 source ~/.bashrc
 ```
 
-# Gas Phase Cluster Generation
+### Gas Phase Cluster Generation
 
 The main program is called `acnnmain` which can be found under `$ACNNHOME` defined previously. You need to prepare an input file for generating structures. There are some example input files under `ACNN/tests`. Here as an example, we will try to generate some gas phase Pt<sub>7</sub> structures using S-BLDA.
 
@@ -87,7 +87,7 @@ acnnmain pt7-gas-draw.json
 
 Then you will find the PDF in `./OUT-pt7-gas/report.pdf`.
 
-# Surface Supported Cluster Generation
+### Surface Supported Cluster Generation
 
 The following command will generate Pt<sub>7</sub> structures on alpha-Al<sub>2</sub>O<sub>3</sub> surface. The surface is described by a `XYZ` file. There are some example surface files under `$ACNNHOME/tests/surfaces`. The computational cell information is written in the comment line of the `XYZ` file. It can be either 3 numbers or 5 numbers. The program always assume the `Z` direction is normal to the surface plane. If the cell size is described by 3 numbers `n1 n2 n3`, then the `XYZ` components of cell axes are `a = (n1, 0, 0), b = (0, n2, 0), c = (0, 0, n3)`. If the cell size is described by 5 numbers `n1 n2 n3 n4 n5`, then the `XYZ` components of cell axes are `a = (n1, n2, 0), b = (n3, n4, 0), c = (0, 0, n5)`. Usually `n5` is larger than the actual height of the surface because of the added vacuum gap. So in the end of comment line there is an additional number in parenthesis, indicating the unit cell height along `Z` without vacuum gap.
 
@@ -99,7 +99,7 @@ acnnmain pt7-alpha.json
 
 Then we can find the results in `./OUT-pt7-alpha/fil_structs.xyz.0`.
 
-# Structure Filtering
+### Structure Filtering
 
 The following command will try to find unique structures from a given example `XYZ` file containing some local minima (`$ACNNHOME/tests/data/pt4b4-local.xyz`).
 
@@ -112,7 +112,7 @@ The unique structures will be in `./OUT-pt4b4-filter/fil_structs.xyz.0`. The add
 
 If the structure filtering should be performed on surface support clusters, the `creation-surface` section should be given in input file, which contains the same information as that in the input file for creation.
 
-# Neural Network Fitting
+### Neural Network Fitting
 
 Note that Neural Network Fitting is only implemented for gas phase clusters containing only one type of element. Other research groups has published more general codes on this topic. For example, see `JCTC, 14(7), 2018, 3933-3942`.
 
