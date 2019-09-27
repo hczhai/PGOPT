@@ -148,6 +148,7 @@ class Filtering(object):
 
     self.max_diff = max_diff
     self.max_diff_report = max_diff_report
+    self.post_reject = None
   
   def init_from_file(self, filename, pre_sort=False):
     self.clus = read_zip_clusters(filename)

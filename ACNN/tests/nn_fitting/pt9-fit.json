@@ -5,7 +5,7 @@
     "output_dir": "./OUT-pt9-nn",
     "write_summary": true, 
     "random_seed": 0,
-    "gpu": "gpu0",
+    "gpu": "cuda0",
     "fitting_net": {
         "shuffle_per": 1, 
         "layers": [
@@ -25,7 +25,7 @@
         "dump_network": true, 
         "step_decay_factor": 60, 
         "load_network": -1, 
-        "epochs": 1400, 
+        "epochs": 1000, 
         "step": 0.1, 
         "batch_size": 50, 
         "momentum": 0.7, 
@@ -38,9 +38,9 @@
         "second_order": false, 
         "input_file": "../data/pt9-structs.xyz", 
         "sample_number": [
-            10000, 
-            1000, 
-            1000
+            200000, 
+            20000, 
+            20000
         ], 
         "energy_unit": "hartree", 
         "orig_and_diff": 0, 

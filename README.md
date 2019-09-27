@@ -27,6 +27,7 @@ Now you are inside the `docker` container. We need to add the following `python`
 
 ```
 pip install theano reportlab dill
+conda install pygpu
 apt-get update
 apt-get -y install gfortran g++ make vim
 ```
@@ -115,16 +116,17 @@ If the structure filtering should be performed on surface support clusters, the 
 
 Note that Neural Network Fitting is only implemented for gas phase clusters containing only one type of element. Other research groups has published more general codes on this topic. For example, see `JCTC, 14(7), 2018, 3933-3942`.
 
-The following command will try to fit a neural network based on an example Pt<sub>9</sub> data (`$ACNNHOME/tests/data/pt9-structs.xyz`). For realistic results, you need to change `sample_number` parameter from `[5000, 500, 500]` to `[200000, 20000, 20000]`. But then it will take a very long time (you may need a gpu). If there is no gpu to use, it will automatically switch to cpu.
+The following command will try to fit a neural network based on an example Pt<sub>9</sub> data (`$ACNNHOME/tests/data/pt9-structs.xyz`). Note that for realistic results, we need to set `sample_number` parameter to `[200000, 20000, 20000]` and `epochs` to `2000`. This calculation normally requires large memory or GPU. If there is no gpu to use, it will automatically switch to cpu.
 
 ```
 cd $ACNNHOME/tests/nn_fitting
+export OMP_NUM_THREADS=40
 acnnmain pt9-fit.json
 ```
 
-The fitted network will be in `./OUT-pt9-nn/fit_network.dill.0`.
+After the fitting is finished, the fitted network will be stored in `./OUT-pt9-nn/fit_network.dill.0`. We have a reference result from executing `acnnmain pt9-fit.json` stored under `$ACNNHOME/tests/nn_fitting_ref`.
 
-Next we need to create some new structures, then use the network to optimize them.
+Next we need to create some new structures, then use the network to optimize them. The file `./OUT-pt9-nn/fit_network.dill.0` is required for optimization.
 
 ```
 acnnmain pt9-create.json

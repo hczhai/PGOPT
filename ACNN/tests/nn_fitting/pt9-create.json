@@ -9,7 +9,7 @@
         "number": 50,
         "method": "blda",
         "order": 2,
-        "2d": 0.5
+        "2d": 0.0
     },
     "filtering-create": {
         "max_diff": 0.25,
